@@ -1,57 +1,58 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from 'oidc-react';
-import { Login } from './pages/Login';
-import { LoggedOut } from './pages/LoggedOut';
-import { MainLayout } from './layout/MainLayout';
-import { Dashboard } from './pages/Dashboard';
-import { Settings } from './pages/Settings';
-import { PrivateRoute } from './components/PrivateRoute';
+import { notification } from 'antd';
 import { AuthConfig } from './config/env.config';
+import AppRouter from './routes/AppRouter';
 //import LoginForm from './components/auth/LoginForm';
 
-
-
-
 function App() {
+  const [noti, contextHolder] = notification.useNotification();
+
+  const onBeforeSignIn = () => {
+    console.log('Starting sign-in process');
+  };
+
+  const onSignIn = () => {
+    console.log('User signed in successfully');
+    noti.success({
+      message: 'Signed In',
+      description: 'You have successfully signed in.',
+      duration: 3,
+    });
+  };
+
+  /*
+  const onSignOut = () => {
+    console.log('User signed out');
+    noti.info({
+      message: 'Signed Out',
+      description: 'You have been signed out.',
+      duration: 3,
+    });
+  };
+  */
+
+  const onSignInError = (error: Error) => {
+    console.error('Auth error:', error);
+    noti.error({
+      message: 'Authentication Error',
+      description: error.message || 'An error occurred during authentication.',
+      duration: 0,
+    });
+  };
+
   return (
-    <AuthProvider {...AuthConfig}>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/logged-out" element={<LoggedOut />} />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <MainLayout>
-                  <Dashboard />
-                </MainLayout>
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <MainLayout>
-                  <Dashboard />
-                </MainLayout>
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <PrivateRoute>
-                <MainLayout>
-                  <Settings />
-                </MainLayout>
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </Router>
+    <>
+    {contextHolder}
+    <AuthProvider 
+      {...AuthConfig}
+      onBeforeSignIn={onBeforeSignIn}
+      onSignIn={onSignIn}
+      //onSignOut={onSignOut}
+      onSignInError={onSignInError}
+      >
+      <AppRouter />
     </AuthProvider>
+    </>   
   );
 }
 

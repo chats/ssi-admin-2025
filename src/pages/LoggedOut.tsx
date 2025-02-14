@@ -5,7 +5,7 @@ import { LoginOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
-export const LoggedOut: React.FC = () => {
+const LoggedOut: React.FC = () => {
   const auth = useAuth();
 
   useEffect(() => {
@@ -18,12 +18,13 @@ export const LoggedOut: React.FC = () => {
       display: 'flex', 
       justifyContent: 'center', 
       alignItems: 'center', 
-      minHeight: '100vh' 
+      minHeight: '100vh',
+      background: '#235255',
     }}>
       <Card style={{ width: 350, textAlign: 'center' }}>
-        <Title level={3}>Logged Out</Title>
+        <Title level={3}>Signed Out</Title>
         <Paragraph>
-          You have been successfully logged out.
+          You have been successfully signed out.
         </Paragraph>
         <Button 
             type="primary" 
@@ -38,3 +39,5 @@ export const LoggedOut: React.FC = () => {
     </div>
   );
 };
+
+export default LoggedOut;

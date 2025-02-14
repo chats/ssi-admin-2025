@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Row, Col, Statistic } from 'antd';
 import { UserOutlined, KeyOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
-export const Dashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
   return (
     <div>
       <h2>Dashboard</h2>
@@ -38,3 +38,5 @@ export const Dashboard: React.FC = () => {
     </div>
   );
 };
+
+export default Dashboard;

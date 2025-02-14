@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Form, Input, Button, Switch } from 'antd';
 
-export const Settings: React.FC = () => {
+const Settings: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
@@ -43,3 +43,5 @@ export const Settings: React.FC = () => {
     </div>
   );
 };
+
+export default Settings;

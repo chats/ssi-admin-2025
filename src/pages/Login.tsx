@@ -6,7 +6,7 @@ import { LoginOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
   const auth = useAuth();
 
   if (auth.isLoading) {
@@ -32,7 +32,8 @@ export const Login: React.FC = () => {
       justifyContent: 'center', 
       alignItems: 'center', 
       minHeight: '100vh',
-      background: '#f0f2f5'
+      //background: '#f0f2f5'
+      background: '#235255',
     }}>
       <Card 
         style={{ 
@@ -60,3 +61,5 @@ export const Login: React.FC = () => {
     </div>
   );
 };
+
+export default Login;

@@ -9,8 +9,11 @@ export const AuthConfig = {
   postLogoutRedirectUri: `${window.location.origin}/logged-out`,
   loadUserInfo: true,
     // Disable automatic signin
-  automaticSilentRenew: false,
   automaticSilentSignin: false,
+  automaticSilentRenew: true,
+  silentRequestTimeout: 10000, // 10 seconds timeout for silent refresh
+  checkSessionIntervalInSeconds: 30, // Check session every 30 seconds
+  silentRedirectUri: `${window.location.origin}/silent-refresh.html`,
   // Add back channel logout configuration
   monitorSession: true,
   endSessionEndpoint: `${import.meta.env.VITE_OIDC_AUTHORITY}/protocol/openid-connect/logout`,
