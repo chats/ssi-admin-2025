@@ -1,0 +1,5 @@
+[install]
+# จัดการ peer dependencies อัตโนมัติ
+peer = true
+# ใช้ exact versions
+save-exact = true
