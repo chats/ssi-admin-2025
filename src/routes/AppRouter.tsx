@@ -1,8 +1,13 @@
-import { Suspense, lazy } from 'react';
+import { ElementType, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 
+const Loadable = (Component: ElementType) => (props: any) => (
+    <Suspense fallback={<LoadingSpinner />}>
+      <Component {...props} />
+    </Suspense>
+);
 
 // Lazy load components
 const Login = lazy(() => import('../pages/Login'));
